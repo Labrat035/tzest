@@ -1,0 +1,23 @@
+-- Erstelle einen neuen Part (die graue Box)
+local box = Instance.new("Part")
+box.Size = Vector3.new(10, 5, 10)  -- Größe der Box
+box.Position = Vector3.new(0, 5, 0)  -- Position der Box
+box.Anchored = true  -- Box bleibt an Ort und Stelle
+box.BrickColor = BrickColor.new("Medium stone grey")  -- Farbe der Box (grau)
+box.Parent = game.Workspace  -- Füge die Box zum Workspace hinzu
+
+-- Erstelle eine SurfaceGui für die Ränder der Box
+for _, face in ipairs(Enum.NormalId:GetEnumItems()) do
+    local surfaceGui = Instance.new("SurfaceGui")
+    surfaceGui.Adornee = box
+    surfaceGui.Face = face
+    surfaceGui.Parent = box
+
+    -- Erstelle einen weißen Rand auf jeder Seite
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(1, 0, 1, 0)  -- Deckt die gesamte Seite ab
+    frame.BorderSizePixel = 10  -- Stärke des Randes
+    frame.BorderColor3 = Color3.new(1, 1, 1)  -- Farbe des Randes (weiß)
+    frame.BackgroundTransparency = 1  -- Transparenz der Hintergrundfläche (nur der Rand bleibt sichtbar)
+    frame.Parent = surfaceGui
+end
